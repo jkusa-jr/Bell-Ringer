@@ -2,12 +2,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     let oscillator;
     let gainNode;
+    let panNode;
     let isPlaying = false;
 
     const playButton = document.getElementById('play');
     const stopButton = document.getElementById('stop');
     const saveButton = document.getElementById('save');
     const volumeControl = document.getElementById('volume');
+    const panControl = document.getElementById('pan');
     const frequencyControl = document.getElementById('frequency');
     const frequencyDisplay = document.getElementById('frequencyDisplay');
     const waveformControls = document.querySelectorAll('input[name="waveform"]');
@@ -16,13 +18,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!isPlaying) {
             oscillator = audioContext.createOscillator();
             gainNode = audioContext.createGain();
+            panNode = audioContext.createStereoPanner();
             
             oscillator.type = document.querySelector('input[name="waveform"]:checked').value;
             oscillator.frequency.setValueAtTime(frequencyControl.value, audioContext.currentTime);
             gainNode.gain.setValueAtTime(volumeControl.value, audioContext.currentTime);
+            panNode.pan.setValueAtTime(panControl.value, audioContext.currentTime);
 
             oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
+            gainNode.connect(panNode);
+            panNode.connect(audioContext.destination);
 
             oscillator.start();
             isPlaying = true;
@@ -45,6 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
     volumeControl.addEventListener('input', function () {
         if (oscillator && gainNode) {
             gainNode.gain.setValueAtTime(volumeControl.value, audioContext.currentTime);
+        }
+    });
+    panControl.addEventListener('input', function () {
+        if (oscillator && panNode) {
+            panNode.pan.setValueAtTime(panControl.value, audioContext.currentTime);
         }
     });
 
