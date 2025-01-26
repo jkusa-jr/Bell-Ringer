@@ -7,13 +7,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const stopButton = document.getElementById('stop');
     const saveButton = document.getElementById('save');
     const volumeControl = document.getElementById('volume');
+    const frequencyControl = document.getElementById('frequency');
+    const frequencyDisplay = document.getElementById('frequencyDisplay');
     const waveformControls = document.querySelectorAll('input[name="waveform"]');
 
     playButton.addEventListener('click', function () {
         if (!isPlaying) {
             oscillator = audioContext.createOscillator();
             oscillator.type = document.querySelector('input[name="waveform"]:checked').value;
-            oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // 440 Hz
+            oscillator.frequency.setValueAtTime(frequencyControl.value, audioContext.currentTime);
             const gainNode = audioContext.createGain();
             gainNode.gain.setValueAtTime(volumeControl.value, audioContext.currentTime);
 
@@ -44,6 +46,14 @@ document.addEventListener('DOMContentLoaded', function () {
             gainNode.gain.setValueAtTime(volumeControl.value, audioContext.currentTime);
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
+        }
+    });
+
+    frequencyControl.addEventListener('input', function () {
+        const frequency = frequencyControl.value;
+        frequencyDisplay.textContent = `${frequency} Hertz`;
+        if (oscillator) {
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
         }
     });
 

@@ -10,11 +10,15 @@
 
 <body>
     <div class="container">
-        <h1>440 Hertz</h1>
+        <h1 id="frequencyDisplay">440 Hertz</h1>
         <div class="controls">
             <button id="play">Play</button>
             <button id="stop">Stop</button>
             <button id="save">Save</button>
+        </div>
+        <div class="frequency-control">
+            <label for="frequency">Frequency</label>
+            <input type="range" id="frequency" min="20" max="2000" step="1" value="440">
         </div>
         <div class="volume-control">
             <label for="volume">Volume</label>
