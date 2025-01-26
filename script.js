@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             oscillator = audioContext.createOscillator();
             gainNode = audioContext.createGain();
             panNode = audioContext.createStereoPanner();
-            
+
             oscillator.type = document.querySelector('input[name="waveform"]:checked').value;
             oscillator.frequency.setValueAtTime(frequencyControl.value, audioContext.currentTime);
             gainNode.gain.setValueAtTime(volumeControl.value, audioContext.currentTime);
@@ -52,10 +52,17 @@ document.addEventListener('DOMContentLoaded', function () {
             gainNode.gain.setValueAtTime(volumeControl.value, audioContext.currentTime);
         }
     });
+    
     panControl.addEventListener('input', function () {
         if (oscillator && panNode) {
             panNode.pan.setValueAtTime(panControl.value, audioContext.currentTime);
         }
+    });
+
+    panControl.addEventListener('dblclick', () => {
+        const panSlider = document.getElementById('pan');
+        panSlider.value = 0;
+        panSlider.dispatchEvent(new Event('input'));
     });
 
     frequencyControl.addEventListener('input', function () {
