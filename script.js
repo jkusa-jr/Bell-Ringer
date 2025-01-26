@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             gainNode.gain.setValueAtTime(volumeControl.value, audioContext.currentTime);
         }
     });
-    
+
     panControl.addEventListener('input', function () {
         if (oscillator && panNode) {
             panNode.pan.setValueAtTime(panControl.value, audioContext.currentTime);
@@ -73,6 +73,48 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    frequencyDisplay.addEventListener('click', function () {
+        const currentFreq = frequencyControl.value;
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.value = currentFreq;
+        input.min = frequencyControl.min;
+        input.max = frequencyControl.max;
+        input.style.width = '100px';
+
+        // Add these styles to match H1
+        input.style.font = 'inherit';  // Inherit font properties from parent
+        input.style.fontSize = 'inherit';
+        input.style.fontWeight = 'inherit';
+        input.style.color = 'inherit';
+        input.style.background = 'none';
+        input.style.border = 'none';
+        input.style.textAlign = 'center';
+        input.style.outline = 'none';
+
+        frequencyDisplay.textContent = '';
+        frequencyDisplay.appendChild(input);
+        input.focus();
+
+        input.addEventListener('blur', updateFrequency);
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                updateFrequency();
+            }
+        });
+
+        function updateFrequency() {
+            const newFreq = Math.min(Math.max(input.value, frequencyControl.min), frequencyControl.max);
+            frequencyControl.value = newFreq;
+            frequencyDisplay.textContent = `${newFreq} Hertz`;
+            if (oscillator) {
+                oscillator.frequency.setValueAtTime(newFreq, audioContext.currentTime);
+            }
+            input.remove();
+        }
+    });
+
+
     waveformControls.forEach(control => {
         control.addEventListener('change', function () {
             if (oscillator) {
@@ -86,3 +128,4 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Save functionality not implemented yet.');
     });
 });
+
