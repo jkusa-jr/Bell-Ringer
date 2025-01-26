@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     let oscillator;
+    let gainNode;
     let isPlaying = false;
 
     const playButton = document.getElementById('play');
@@ -14,9 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
     playButton.addEventListener('click', function () {
         if (!isPlaying) {
             oscillator = audioContext.createOscillator();
+            gainNode = audioContext.createGain();
+            
             oscillator.type = document.querySelector('input[name="waveform"]:checked').value;
             oscillator.frequency.setValueAtTime(frequencyControl.value, audioContext.currentTime);
-            const gainNode = audioContext.createGain();
             gainNode.gain.setValueAtTime(volumeControl.value, audioContext.currentTime);
 
             oscillator.connect(gainNode);
@@ -41,11 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     volumeControl.addEventListener('input', function () {
-        if (oscillator) {
-            const gainNode = audioContext.createGain();
+        if (oscillator && gainNode) {
             gainNode.gain.setValueAtTime(volumeControl.value, audioContext.currentTime);
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
         }
     });
 
