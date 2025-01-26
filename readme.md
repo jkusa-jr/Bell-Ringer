@@ -2,6 +2,8 @@
 
 A versatile web-based audio tone generator that allows real-time manipulation of sound properties using the Web Audio API.
 
+See it in action [here](https://barbowza.github.io/tone-generator/)
+
 ## Features
 
 - **Frequency Control**: Generate tones from 20Hz to 2000Hz
