@@ -21,16 +21,16 @@
             <input style="display: none;" type="range" id="frequency" min="20" max="2000" step="1" value="440">
         </div>
         <div class="volume-control">
-            <input style="display: none;" type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+            <input style="display: none;" type="range" id="volume" min="0" max="100" step="0.01" value="5">
         </div>
         <div class="pan-control">
             <input style="display: none;" type="range" id="pan" min="-1" max="1" step="0.01" value="0">
         </div>
         <div class="waveform-control">
-            <label><input style="display: none;" type="radio" name="waveform" value="sine"></label>
+            <label><input style="display: none;" type="radio" name="waveform" value="sine" checked></label>
             <label><input style="display: none;" type="radio" name="waveform" value="square"></label>
             <label><input style="display: none;" type="radio" name="waveform" value="sawtooth"></label>
-            <label><input style="display: none;" type="radio" name="waveform" value="triangle" checked></label>
+            <label><input style="display: none;" type="radio" name="waveform" value="triangle"></label>
         </div>
     </div>
     <script src="script.js"></script>
