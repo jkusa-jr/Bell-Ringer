@@ -4,7 +4,7 @@ A school Bell
 
 - **Playback Controls**:
   - Play/Pause toggle
-  - 
+  
 ## Usage
 
 1. Click the "Play" button to start generating sound
