@@ -4,35 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tone Generator</title>
+    <title>Bell Ringer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container">
-        <h1 id="frequencyDisplay">440 Hertz</h1>
+        <h1  style="display: none;" id="frequencyDisplay">440 Hertz</h1>
+        <h1>Bell Ringer</h1>
         <div class="controls">
             <button id="play">Play</button>
-            <button id="stop">Stop</button>
-            <button id="save" disabled>Save</button>
+            <button id="stop"style="display: none;>Stop</button>
+            <button style="display: none;" id="save" disabled>Save</button>
         </div>
         <div class="frequency-control">
-            <label for="frequency">Frequency</label>
-            <input type="range" id="frequency" min="20" max="2000" step="1" value="440">
+            <input style="display: none;" type="range" id="frequency" min="20" max="2000" step="1" value="440">
         </div>
         <div class="volume-control">
-            <label for="volume">Volume</label>
-            <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+            <input style="display: none;" type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
         </div>
         <div class="pan-control">
-            <label for="pan">Pan</label>
-            <input type="range" id="pan" min="-1" max="1" step="0.01" value="0">
+            <input style="display: none;" type="range" id="pan" min="-1" max="1" step="0.01" value="0">
         </div>
         <div class="waveform-control">
-            <label><input type="radio" name="waveform" value="sine" checked> Sine</label>
-            <label><input type="radio" name="waveform" value="square"> Square</label>
-            <label><input type="radio" name="waveform" value="sawtooth"> Sawtooth</label>
-            <label><input type="radio" name="waveform" value="triangle"> Triangle</label>
+            <label><input style="display: none;" type="radio" name="waveform" value="sine"></label>
+            <label><input style="display: none;" type="radio" name="waveform" value="square"></label>
+            <label><input style="display: none;" type="radio" name="waveform" value="sawtooth"></label>
+            <label><input style="display: none;" type="radio" name="waveform" value="triangle" checked></label>
         </div>
     </div>
     <script src="script.js"></script>
