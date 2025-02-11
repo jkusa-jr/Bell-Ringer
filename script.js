@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             oscillator.start();
             isPlaying = true;
-            playButton.textContent = 'Pause';
+            playButton.textContent = 'Stop';
         } else {
             oscillator.stop();
             isPlaying = false;
