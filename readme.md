@@ -2,7 +2,9 @@
 
 # Warning: This is Loud! 📢
 
-A school Bell
+# Sounds best on a Chromebook
+
+A school bell
 
 - **Playback Controls**:
   - Play/Pause toggle
